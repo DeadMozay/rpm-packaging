@@ -13,8 +13,6 @@ Summary:        Package provides assertions for testing
 License:        ASL 2.0 and MIT
 URL:            https://crates.io/crates/assert
 Source:         %{crates_source}
-# Initial patched metadata
-Patch0:         assert-fix-metadata.diff
 
 ExclusiveArch:  %{rust_arches}
 
@@ -23,7 +21,7 @@ BuildRequires:  rust-packaging
 %global _description \
 Package provides assertions for testing
 
-%description %{_description}
+%description %{_description}.
 
 %package        devel
 Summary:        %{summary}
