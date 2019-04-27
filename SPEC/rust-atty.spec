@@ -2,26 +2,28 @@
 %bcond_without check
 %global debug_package %{nil}
 
-%global crate assert
+%global crate atty
 
 Name:           rust-%{crate}
-Version:        0.7.4
+Version:        0.2.11
 Release:        1%{?dist}
-Summary:        Package provides assertions for testing
+Summary:        A simple interface for querying atty
 
-# Upstream license specification: Apache-2.0 and MIT
-License:        ASL 2.0 and MIT
-URL:            https://crates.io/crates/assert
+License:        MIT
+URL:            https://crates.io/crates/atty
 Source:         %{crates_source}
+# Initial patched metadata
+Patch0:         atty-fix-metadata.diff
 
 ExclusiveArch:  %{rust_arches}
 
 BuildRequires:  rust-packaging
+BuildRequires:  (crate(libc) >= 0.2.0 with crate(libc) < 0.3.0)
 
 %global _description \
-Package provides assertions for testing.
+A simple interface for querying atty.
 
-%description %{_description}.
+%description %{_description}
 
 %package        devel
 Summary:        %{summary}
@@ -65,5 +67,5 @@ which use "default" feature of "%{crate}" crate.
 %endif
 
 %changelog
-* Sat Apr 27 14:35:27 +06 2019 Yuriy Sharov <dead_mozay@nom-it.ru> - 0.7.4-1
+* Sat Apr 27 15:49:22 +06 2019 Yuriy Sharov <dead_mozay@nom-it.ru> - 0.2.11-1
 - Initial package
