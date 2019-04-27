@@ -2,16 +2,16 @@
 %bcond_without check
 %global debug_package %{nil}
 
-%global crate bitflags
+%global crate unchecked-index
 
 Name:           rust-%{crate}
-Version:        1.0.4
+Version:        0.2.2
 Release:        1%{?dist}
-Summary:        A macro to generate structures which behave like bitflags
+Summary:        Unchecked indexing wrapper using regular index syntax
 
 # Upstream license specification: MIT/Apache-2.0
 License:        MIT and ASL 2.0
-URL:            https://crates.io/crates/bitflags
+URL:            https://crates.io/crates/unchecked-index
 Source:         %{crates_source}
 
 ExclusiveArch:  %{rust_arches}
@@ -19,7 +19,7 @@ ExclusiveArch:  %{rust_arches}
 BuildRequires:  rust-packaging
 
 %global _description \
-A macro to generate structures which behave like bitflags.
+Unchecked indexing wrapper using regular index syntax.
 
 %description %{_description}
 
@@ -33,8 +33,7 @@ This package contains library source intended for building other packages
 which use "%{crate}" crate.
 
 %files          devel
-%doc README.md CHANGELOG.md CODE_OF_CONDUCT.md
-%license LICENSE-MIT LICENSE-APACHE
+%doc README.md
 %{cargo_registry}/%{crate}-%{version}/
 
 %package     -n %{name}+default-devel
@@ -47,18 +46,6 @@ This package contains library source intended for building other packages
 which use "default" feature of "%{crate}" crate.
 
 %files       -n %{name}+default-devel
-%ghost %{cargo_registry}/%{crate}-%{version}/Cargo.toml
-
-%package     -n %{name}+example_generated-devel
-Summary:        %{summary}
-BuildArch:      noarch
-
-%description -n %{name}+example_generated-devel %{_description}
-
-This package contains library source intended for building other packages
-which use "example_generated" feature of "%{crate}" crate.
-
-%files       -n %{name}+example_generated-devel
 %ghost %{cargo_registry}/%{crate}-%{version}/Cargo.toml
 
 %prep
@@ -77,5 +64,5 @@ which use "example_generated" feature of "%{crate}" crate.
 %endif
 
 %changelog
-* Sat Apr 27 15:49:57 +06 2019 Yuriy Sharov <dead_mozay@nom-it.ru> - 1.0.4-1
+* Sat Apr 27 20:40:56 +06 2019 Yuriy Sharov <dead_mozay@nom-it.ru> - 0.2.2-1
 - Initial package
