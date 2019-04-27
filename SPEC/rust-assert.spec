@@ -19,7 +19,7 @@ ExclusiveArch:  %{rust_arches}
 BuildRequires:  rust-packaging
 
 %global _description \
-Package provides assertions for testing
+Package provides assertions for testing.
 
 %description %{_description}.
 
