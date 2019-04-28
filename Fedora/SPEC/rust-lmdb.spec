@@ -2,30 +2,32 @@
 %bcond_without check
 %global debug_package %{nil}
 
-%global crate itertools
+%global crate lmdb
 
 Name:           rust-%{crate}
 Version:        0.8.0
 Release:        1%{?dist}
-Summary:        Extra iterator adaptors, iterator methods, free functions, and macros
+Summary:        Idiomatic and safe LMDB wrapper
 
-# Upstream license specification: MIT/Apache-2.0
-License:        MIT or ASL 2.0
-URL:            https://crates.io/crates/itertools
+# Upstream license specification: Apache-2.0
+License:        ASL 2.0
+URL:            https://crates.io/crates/lmdb
 Source:         %{crates_source}
 
 ExclusiveArch:  %{rust_arches}
 
 BuildRequires:  rust-packaging
-BuildRequires:  (crate(either) >= 1.0.0 with crate(either) < 2.0.0)
+BuildRequires:  (crate(bitflags/default) >= 1.0.0 with crate(bitflags/default) < 2.0.0)
+BuildRequires:  (crate(libc/default) >= 0.2.0 with crate(libc/default) < 0.3.0)
+BuildRequires:  (crate(lmdb-sys/default) >= 0.8.0 with crate(lmdb-sys/default) < 0.9.0)
 %if %{with check}
-BuildRequires:  (crate(permutohedron/default) >= 0.2.0 with crate(permutohedron/default) < 0.3.0)
-BuildRequires:  (crate(quickcheck) >= 0.7.0 with crate(quickcheck) < 0.8.0)
-BuildRequires:  (crate(rand/default) >= 0.6.0 with crate(rand/default) < 0.7.0)
+BuildRequires:  (crate(byteorder/default) >= 1.0.0 with crate(byteorder/default) < 2.0.0)
+BuildRequires:  (crate(rand/default) >= 0.4.0 with crate(rand/default) < 0.5.0)
+BuildRequires:  (crate(tempdir/default) >= 0.3.0 with crate(tempdir/default) < 0.4.0)
 %endif
 
 %global _description \
-Extra iterator adaptors, iterator methods, free functions, and macros.
+Idiomatic and safe LMDB wrapper.
 
 %description %{_description}
 
@@ -39,8 +41,8 @@ This package contains library source intended for building other packages
 which use "%{crate}" crate.
 
 %files          devel
-%doc README.rst
-%license LICENSE-MIT LICENSE-APACHE
+%doc README.md
+%license LICENSE
 %{cargo_registry}/%{crate}-%{version}/
 
 %package     -n %{name}+default-devel
@@ -53,18 +55,6 @@ This package contains library source intended for building other packages
 which use "default" feature of "%{crate}" crate.
 
 %files       -n %{name}+default-devel
-%ghost %{cargo_registry}/%{crate}-%{version}/Cargo.toml
-
-%package     -n %{name}+use_std-devel
-Summary:        %{summary}
-BuildArch:      noarch
-
-%description -n %{name}+use_std-devel %{_description}
-
-This package contains library source intended for building other packages
-which use "use_std" feature of "%{crate}" crate.
-
-%files       -n %{name}+use_std-devel
 %ghost %{cargo_registry}/%{crate}-%{version}/Cargo.toml
 
 %prep
@@ -83,5 +73,5 @@ which use "use_std" feature of "%{crate}" crate.
 %endif
 
 %changelog
-* Sun Apr 28 08:27:54 +06 2019 Yuriy Sharov <dead_mozay@nom-it.ru> - 0.8.0-1
+* Sun Apr 28 09:29:00 +06 2019 Yuriy Sharov <dead_mozay@nom-it.ru> - 0.8.0-1
 - Initial package
