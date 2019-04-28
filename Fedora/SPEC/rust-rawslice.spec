@@ -7,7 +7,7 @@
 Name:           rust-%{crate}
 Version:        0.1.0
 Release:        1%{?dist}
-Summary:        Reimplementation of the slice iterators, with extra features. For example creation from raw pointers and start, end pointer accessors.
+Summary:        Reimplementation of the slice iterators, with extra features
 
 # Upstream license specification: MIT/Apache-2.0
 License:        MIT or ASL 2.0
@@ -38,6 +38,8 @@ This package contains library source intended for building other packages
 which use "%{crate}" crate.
 
 %files          devel
+%doc README.rst
+%license LICENSE-MIT LICENSE-APACHE
 %{cargo_registry}/%{crate}-%{version}/
 
 %package     -n %{name}+default-devel

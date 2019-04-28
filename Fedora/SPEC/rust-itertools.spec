@@ -2,24 +2,30 @@
 %bcond_without check
 %global debug_package %{nil}
 
-%global crate unchecked-index
+%global crate itertools
 
 Name:           rust-%{crate}
-Version:        0.2.2
+Version:        0.8.0
 Release:        1%{?dist}
-Summary:        Unchecked indexing wrapper using regular index syntax
+Summary:        Extra iterator adaptors, iterator methods, free functions, and macros
 
 # Upstream license specification: MIT/Apache-2.0
-License:        MIT and ASL 2.0
-URL:            https://crates.io/crates/unchecked-index
+License:        MIT or ASL 2.0
+URL:            https://crates.io/crates/itertools
 Source:         %{crates_source}
 
 ExclusiveArch:  %{rust_arches}
 
 BuildRequires:  rust-packaging
+BuildRequires:  (crate(either) >= 1.0.0 with crate(either) < 2.0.0)
+%if %{with check}
+BuildRequires:  (crate(permutohedron/default) >= 0.2.0 with crate(permutohedron/default) < 0.3.0)
+BuildRequires:  (crate(quickcheck) >= 0.7.0 with crate(quickcheck) < 0.8.0)
+BuildRequires:  (crate(rand/default) >= 0.6.0 with crate(rand/default) < 0.7.0)
+%endif
 
 %global _description \
-Unchecked indexing wrapper using regular index syntax.
+Extra iterator adaptors, iterator methods, free functions, and macros.
 
 %description %{_description}
 
@@ -33,7 +39,7 @@ This package contains library source intended for building other packages
 which use "%{crate}" crate.
 
 %files          devel
-%doc README.md
+%doc README.rst
 %license LICENSE-MIT LICENSE-APACHE
 %{cargo_registry}/%{crate}-%{version}/
 
@@ -47,6 +53,18 @@ This package contains library source intended for building other packages
 which use "default" feature of "%{crate}" crate.
 
 %files       -n %{name}+default-devel
+%ghost %{cargo_registry}/%{crate}-%{version}/Cargo.toml
+
+%package     -n %{name}+use_std-devel
+Summary:        %{summary}
+BuildArch:      noarch
+
+%description -n %{name}+use_std-devel %{_description}
+
+This package contains library source intended for building other packages
+which use "use_std" feature of "%{crate}" crate.
+
+%files       -n %{name}+use_std-devel
 %ghost %{cargo_registry}/%{crate}-%{version}/Cargo.toml
 
 %prep
@@ -65,5 +83,5 @@ which use "default" feature of "%{crate}" crate.
 %endif
 
 %changelog
-* Sat Apr 27 20:40:56 +06 2019 Yuriy Sharov <dead_mozay@nom-it.ru> - 0.2.2-1
+* Sun Apr 28 08:27:54 +06 2019 Yuriy Sharov <dead_mozay@nom-it.ru> - 0.8.0-1
 - Initial package

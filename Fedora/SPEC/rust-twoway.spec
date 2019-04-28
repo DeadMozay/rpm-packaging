@@ -49,6 +49,8 @@ This package contains library source intended for building other packages
 which use "%{crate}" crate.
 
 %files          devel
+%doc README.rst
+%license LICENSE-MIT LICENSE-APACHE
 %{cargo_registry}/%{crate}-%{version}/
 
 %package     -n %{name}+default-devel
