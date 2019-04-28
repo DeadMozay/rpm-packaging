@@ -13,6 +13,8 @@ Summary:        Fast substring search for strings and byte strings
 License:        MIT or ASL 2.0
 URL:            https://crates.io/crates/twoway
 Source:         %{crates_source}
+# Initial patched metadata
+Patch0:         twoway-fix-metadata.diff
 
 ExclusiveArch:  %{rust_arches}
 
@@ -21,12 +23,12 @@ BuildRequires:  (crate(memchr) >= 2.0.0 with crate(memchr) < 3.0.0)
 BuildRequires:  (crate(memchr/use_std) >= 2.0.0 with crate(memchr/use_std) < 3.0.0)
 BuildRequires:  (crate(unchecked-index/default) >= 0.2.2 with crate(unchecked-index/default) < 0.3.0)
 %if %{with check}
-BuildRequires:  (crate(itertools/default) >= 0.7.0 with crate(itertools/default) < 0.8.0)
+BuildRequires:  (crate(itertools/default) >= 0.8.0 with crate(itertools/default) < 0.9.0)
 BuildRequires:  (crate(macro-attr/default) >= 0.2.0 with crate(macro-attr/default) < 0.3.0)
 BuildRequires:  (crate(newtype_derive/default) >= 0.1.0 with crate(newtype_derive/default) < 0.2.0)
 BuildRequires:  (crate(odds/default) >= 0.3.0 with crate(odds/default) < 0.4.0)
 BuildRequires:  (crate(odds/std-string) >= 0.3.0 with crate(odds/std-string) < 0.4.0)
-BuildRequires:  (crate(quickcheck) >= 0.7.0 with crate(quickcheck) < 0.8.0)
+BuildRequires:  (crate(quickcheck) >= 0.8.0 with crate(quickcheck) < 0.9.0)
 BuildRequires:  (crate(rand/default) >= 0.6.0 with crate(rand/default) < 0.7.0)
 %endif
 
@@ -153,5 +155,5 @@ which use "use_std" feature of "%{crate}" crate.
 %endif
 
 %changelog
-* Sat Apr 27 20:37:24 +06 2019 Yuriy Sharov <dead_mozay@nom-it.ru> - 0.2.0-1
+* Sun Apr 28 15:25:54 +06 2019 Yuriy Sharov <dead_mozay@nom-it.ru> - 0.2.0-1
 - Initial package

@@ -13,6 +13,8 @@ Summary:        Odds and ends — collection miscellania
 License:        MIT or ASL 2.0
 URL:            https://crates.io/crates/odds
 Source:         %{crates_source}
+# Initial patched metadata
+Patch0:         odds-fix-metadata.diff
 
 ExclusiveArch:  %{rust_arches}
 
@@ -21,10 +23,10 @@ BuildRequires:  (crate(rawpointer/default) >= 0.1.0 with crate(rawpointer/defaul
 BuildRequires:  (crate(rawslice/default) >= 0.1.0 with crate(rawslice/default) < 0.2.0)
 BuildRequires:  (crate(unchecked-index/default) >= 0.2.2 with crate(unchecked-index/default) < 0.3.0)
 %if %{with check}
-BuildRequires:  (crate(itertools/default) >= 0.7.2 with crate(itertools/default) < 0.8.0)
-BuildRequires:  (crate(lazy_static/default) >= 0.2.2 with crate(lazy_static/default) < 0.3.0)
+BuildRequires:  (crate(itertools/default) >= 0.8.0 with crate(itertools/default) < 0.9.0)
+BuildRequires:  (crate(lazy_static/default) >= 1.3.0 with crate(lazy_static/default) < 2.0.0)
 BuildRequires:  (crate(memchr/default) >= 2.0.0 with crate(memchr/default) < 3.0.0)
-BuildRequires:  (crate(quickcheck) >= 0.4.1 with crate(quickcheck) < 0.5.0)
+BuildRequires:  (crate(quickcheck) >= 0.8.2 with crate(quickcheck) < 0.9.0)
 %endif
 
 %global _description \
@@ -44,6 +46,8 @@ This package contains library source intended for building other packages
 which use "%{crate}" crate.
 
 %files          devel
+%doc README.rst
+%license LICENSE-MIT LICENSE-APACHE
 %{cargo_registry}/%{crate}-%{version}/
 
 %package     -n %{name}+default-devel
@@ -134,5 +138,5 @@ which use "unstable" feature of "%{crate}" crate.
 %endif
 
 %changelog
-* Sat Apr 27 20:42:23 +06 2019 Yuriy Sharov <dead_mozay@nom-it.ru> - 0.3.1-1
+* Sun Apr 28 14:59:49 +06 2019 Yuriy Sharov <dead_mozay@nom-it.ru> - 0.3.1-1
 - Initial package
