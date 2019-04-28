@@ -2,26 +2,30 @@
 %bcond_without check
 %global debug_package %{nil}
 
-%global crate atty
+%global crate time
 
 Name:           rust-%{crate}
-Version:        0.2.11
+Version:        0.1.42
 Release:        1%{?dist}
-Summary:        A simple interface for querying atty
+Summary:        Utilities for working with time-related functions in Rust
 
-License:        MIT
-URL:            https://crates.io/crates/atty
+# Upstream license specification: MIT/Apache-2.0
+License:        MIT or ASL 2.0
+URL:            https://crates.io/crates/time
 Source:         %{crates_source}
 # Initial patched metadata
-Patch0:         atty-fix-metadata.diff
+Patch0:         time-fix-metadata.diff
 
 ExclusiveArch:  %{rust_arches}
 
 BuildRequires:  rust-packaging
-BuildRequires:  (crate(libc) >= 0.2.0 with crate(libc) < 0.3.0)
+BuildRequires:  (crate(libc/default) >= 0.2.1 with crate(libc/default) < 0.3.0)
+%if %{with check}
+BuildRequires:  (crate(log/default) >= 0.4.0 with crate(log/default) < 0.5.0)
+%endif
 
 %global _description \
-A simple interface for querying atty.
+Utilities for working with time-related functions in Rust.
 
 %description %{_description}
 
@@ -36,7 +40,7 @@ which use "%{crate}" crate.
 
 %files          devel
 %doc README.md
-%license LICENSE.md
+%license LICENSE-MIT LICENSE-APACHE
 %{cargo_registry}/%{crate}-%{version}/
 
 %package     -n %{name}+default-devel
@@ -49,6 +53,18 @@ This package contains library source intended for building other packages
 which use "default" feature of "%{crate}" crate.
 
 %files       -n %{name}+default-devel
+%ghost %{cargo_registry}/%{crate}-%{version}/Cargo.toml
+
+%package     -n %{name}+rustc-serialize-devel
+Summary:        %{summary}
+BuildArch:      noarch
+
+%description -n %{name}+rustc-serialize-devel %{_description}
+
+This package contains library source intended for building other packages
+which use "rustc-serialize" feature of "%{crate}" crate.
+
+%files       -n %{name}+rustc-serialize-devel
 %ghost %{cargo_registry}/%{crate}-%{version}/Cargo.toml
 
 %prep
@@ -67,5 +83,5 @@ which use "default" feature of "%{crate}" crate.
 %endif
 
 %changelog
-* Sat Apr 27 15:49:22 +06 2019 Yuriy Sharov <dead_mozay@nom-it.ru> - 0.2.11-1
+* Sun Apr 28 08:45:33 +06 2019 Yuriy Sharov <dead_mozay@nom-it.ru> - 0.1.42-1
 - Initial package
