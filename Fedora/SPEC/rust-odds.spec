@@ -10,7 +10,7 @@ Release:        1%{?dist}
 Summary:        Odds and ends — collection miscellania
 
 # Upstream license specification: MIT/Apache-2.0
-License:        MIT and ASL 2.0
+License:        MIT or ASL 2.0
 URL:            https://crates.io/crates/odds
 Source:         %{crates_source}
 

@@ -10,7 +10,7 @@ Release:        1%{?dist}
 Summary:        Fast substring search for strings and byte strings
 
 # Upstream license specification: MIT/Apache-2.0
-License:        MIT and ASL 2.0
+License:        MIT or ASL 2.0
 URL:            https://crates.io/crates/twoway
 Source:         %{crates_source}
 
