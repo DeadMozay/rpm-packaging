@@ -13,13 +13,14 @@ Summary:        Data model library to share app state between threads and proces
 License:        GPLv3
 URL:            https://crates.io/crates/mdl
 Source:         %{crates_source}
+# Initial patched metadata
+Patch0:         mdl-fix-metadata.diff
 
 ExclusiveArch:  %{rust_arches}
 
 BuildRequires:  rust-packaging
 BuildRequires:  (crate(bincode/default) >= 1.0.1 with crate(bincode/default) < 2.0.0)
 BuildRequires:  (crate(failure/default) >= 0.1.2 with crate(failure/default) < 0.2.0)
-BuildRequires:  (crate(lmdb/default) >= 0.8.0 with crate(lmdb/default) < 0.9.0)
 BuildRequires:  (crate(serde/default) >= 1.0.79 with crate(serde/default) < 2.0.0)
 BuildRequires:  (crate(serde_derive/default) >= 1.0.79 with crate(serde_derive/default) < 2.0.0)
 
@@ -71,5 +72,5 @@ which use "default" feature of "%{crate}" crate.
 %endif
 
 %changelog
-* Sun Apr 28 09:25:09 +06 2019 Yuriy Sharov <dead_mozay@nom-it.ru> - 1.0.4-1
+* Sun Apr 28 12:55:23 +06 2019 Yuriy Sharov <dead_mozay@nom-it.ru> - 1.0.4-1
 - Initial package
