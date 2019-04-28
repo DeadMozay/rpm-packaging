@@ -6,7 +6,7 @@
 Name:           rust-%{crate}
 Version:        0.2.1
 Release:        1%{?dist}
-Summary:        Determines the MIME type of a file by traversing a filetype tree.
+Summary:        Determines the MIME type of a file by traversing a filetype tree
 
 License:        MIT
 URL:            https://crates.io/crates/tree_magic
@@ -19,8 +19,8 @@ ExclusiveArch:  %{rust_arches}
 BuildRequires:  rust-packaging
 BuildRequires:  (crate(fnv/default) >= 1.0.0 with crate(fnv/default) < 2.0.0)
 BuildRequires:  (crate(lazy_static/default) >= 1.3.0 with crate(lazy_static/default) < 2.0.0)
-BuildRequires:  (crate(nom/default) >= 2.0.0 with crate(nom/default) < 3.0.0)
-BuildRequires:  (crate(parking_lot/default) >= 0.4.0 with crate(parking_lot/default) < 0.5.0)
+BuildRequires:  (crate(nom/default) >= 4.0.0 with crate(nom/default) < 5.0.0)
+BuildRequires:  (crate(parking_lot/default) >= 0.7.0 with crate(parking_lot/default) < 0.8.0)
 BuildRequires:  (crate(petgraph/default) >= 0.4.0 with crate(petgraph/default) < 0.5.0)
 
 %global _description \
@@ -47,7 +47,8 @@ This package contains library source intended for building other packages
 which use "%{crate}" crate.
 
 %files          devel
-%doc README.md
+%doc README.md CHANGELOG.md
+%license LICENSE
 %{cargo_registry}/%{crate}-%{version}/
 
 %package     -n %{name}+default-devel
@@ -162,5 +163,5 @@ which use "walkdir" feature of "%{crate}" crate.
 %endif
 
 %changelog
-* Sun Apr 28 15:57:41 +06 2019 Yuriy Sharov <dead_mozay@nom-it.ru> - 0.2.1-1
+* Sun Apr 28 17:45:14 +06 2019 Yuriy Sharov <dead_mozay@nom-it.ru> - 0.2.1-1
 - Initial package

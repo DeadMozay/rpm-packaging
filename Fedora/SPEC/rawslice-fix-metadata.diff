@@ -1,0 +1,8 @@
+--- rawslice-0.1.0/Cargo.toml	2016-12-15T11:48:10+00:00
++++ rawslice-0.1.0/Cargo.toml	2019-04-28T12:52:12.491849+00:00
+@@ -18,4 +18,4 @@
+ rawpointer = "0.1"
+ 
+ [dev-dependencies]
+-quickcheck = { version = "0.4", default-features = false }
++quickcheck = { version = "0.8", default-features = false }

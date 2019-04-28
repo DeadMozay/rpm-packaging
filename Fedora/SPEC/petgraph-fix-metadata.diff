@@ -1,0 +1,42 @@
+--- petgraph-0.4.13/Cargo.toml	1970-01-01T00:00:00+00:00
++++ petgraph-0.4.13/Cargo.toml	2019-04-28T13:54:46.727412+00:00
+@@ -36,8 +36,8 @@
+ [dependencies.fixedbitset]
+ version = "0.1.4"
+ 
+-[dependencies.ordermap]
+-version = "0.3.0"
++[dependencies.indexmap]
++version = "1.0.2"
+ optional = true
+ 
+ [dependencies.quickcheck]
+@@ -53,23 +53,23 @@
+ version = "1.0"
+ optional = true
+ [dev-dependencies.defmac]
+-version = "0.1"
++version = "0.2"
+ 
+ [dev-dependencies.itertools]
+-version = "0.7.0"
++version = "0.8.0"
+ default-features = false
+ 
+ [dev-dependencies.odds]
+-version = "0.2.19"
++version = "0.3"
+ 
+ [dev-dependencies.rand]
+-version = "0.3"
++version = "0.6"
+ 
+ [features]
+ all = ["unstable", "quickcheck", "stable_graph", "graphmap"]
+ default = ["graphmap", "stable_graph"]
+ generate = []
+-graphmap = ["ordermap"]
++graphmap = ["indexmap"]
+ serde-1 = ["serde", "serde_derive"]
+ stable_graph = []
+ unstable = ["generate"]

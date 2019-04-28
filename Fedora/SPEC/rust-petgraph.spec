@@ -20,12 +20,12 @@ ExclusiveArch:  %{rust_arches}
 
 BuildRequires:  rust-packaging
 BuildRequires:  (crate(fixedbitset/default) >= 0.1.4 with crate(fixedbitset/default) < 0.2.0)
-BuildRequires:  (crate(ordermap/default) >= 0.3.0 with crate(ordermap/default) < 0.4.0)
+BuildRequires:  (crate(indexmap/default) >= 1.0.2 with crate(indexmap/default) < 2.0.0)
 %if %{with check}
-BuildRequires:  (crate(defmac/default) >= 0.1.0 with crate(defmac/default) < 0.2.0)
+BuildRequires:  (crate(defmac/default) >= 0.2.0 with crate(defmac/default) < 0.3.0)
 BuildRequires:  (crate(itertools) >= 0.8.0 with crate(itertools) < 0.9.0)
-BuildRequires:  (crate(odds/default) >= 0.2.19 with crate(odds/default) < 0.3.0)
-BuildRequires:  (crate(rand/default) >= 0.3.0 with crate(rand/default) < 0.4.0)
+BuildRequires:  (crate(odds/default) >= 0.3.0 with crate(odds/default) < 0.4.0)
+BuildRequires:  (crate(rand/default) >= 0.6.0 with crate(rand/default) < 0.7.0)
 %endif
 
 %global _description \
@@ -43,8 +43,6 @@ This package contains library source intended for building other packages
 which use "%{crate}" crate.
 
 %files          devel
-%doc README.rst CONTRIBUTING.rst
-%license LICENSE-MIT LICENSE-APACHE
 %{cargo_registry}/%{crate}-%{version}/
 
 %package     -n %{name}+default-devel
@@ -95,16 +93,16 @@ which use "graphmap" feature of "%{crate}" crate.
 %files       -n %{name}+graphmap-devel
 %ghost %{cargo_registry}/%{crate}-%{version}/Cargo.toml
 
-%package     -n %{name}+ordermap-devel
+%package     -n %{name}+indexmap-devel
 Summary:        %{summary}
 BuildArch:      noarch
 
-%description -n %{name}+ordermap-devel %{_description}
+%description -n %{name}+indexmap-devel %{_description}
 
 This package contains library source intended for building other packages
-which use "ordermap" feature of "%{crate}" crate.
+which use "indexmap" feature of "%{crate}" crate.
 
-%files       -n %{name}+ordermap-devel
+%files       -n %{name}+indexmap-devel
 %ghost %{cargo_registry}/%{crate}-%{version}/Cargo.toml
 
 %package     -n %{name}+quickcheck-devel
@@ -195,5 +193,5 @@ which use "unstable" feature of "%{crate}" crate.
 %endif
 
 %changelog
-* Sun Apr 28 15:53:31 +06 2019 Yuriy Sharov <dead_mozay@nom-it.ru> - 0.4.13-1
+* Sun Apr 28 19:54:46 +06 2019 Yuriy Sharov <dead_mozay@nom-it.ru> - 0.4.13-1
 - Initial package

@@ -2,31 +2,24 @@
 %bcond_without check
 %global debug_package %{nil}
 
-%global crate rawslice
+%global crate defmac
 
 Name:           rust-%{crate}
-Version:        0.1.0
+Version:        0.2.0
 Release:        1%{?dist}
-Summary:        Reimplementation of the slice iterators, with extra features
+Summary:        A macro to define lambda-like macros inline.
 
-# Upstream license specification: MIT/Apache-2.0
-License:        MIT or ASL 2.0
-URL:            https://crates.io/crates/rawslice
+# Upstream license specification: Apache-2.0/MIT
+License:        ASL 2.0 or MIT
+URL:            https://crates.io/crates/defmac
 Source:         %{crates_source}
-# Initial patched metadata
-Patch0:         rawslice-fix-metadata.diff
 
 ExclusiveArch:  %{rust_arches}
 
 BuildRequires:  rust-packaging
-BuildRequires:  (crate(rawpointer/default) >= 0.1.0 with crate(rawpointer/default) < 0.2.0)
-%if %{with check}
-BuildRequires:  (crate(quickcheck) >= 0.8.0 with crate(quickcheck) < 0.9.0)
-%endif
 
 %global _description \
-Reimplementation of the slice iterators, with extra features. For example\
-creation from raw pointers and start, end pointer accessors.
+A macro to define lambda-like macros inline.
 
 %description %{_description}
 
@@ -40,8 +33,6 @@ This package contains library source intended for building other packages
 which use "%{crate}" crate.
 
 %files          devel
-%doc README.rst
-%license LICENSE-MIT LICENSE-APACHE
 %{cargo_registry}/%{crate}-%{version}/
 
 %package     -n %{name}+default-devel
@@ -72,5 +63,5 @@ which use "default" feature of "%{crate}" crate.
 %endif
 
 %changelog
-* Sun Apr 28 18:52:12 +06 2019 Yuriy Sharov <dead_mozay@nom-it.ru> - 0.1.0-1
+* Sun Apr 28 18:02:08 +06 2019 Yuriy Sharov <dead_mozay@nom-it.ru> - 0.2.0-1
 - Initial package
